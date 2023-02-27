@@ -283,3 +283,24 @@ VALUES (10,123),
 	   (99,123),
 	   (12,102),
 	   (99,112)
+	   
+select p.l_name, p.f_name from patients p
+join patient_diagnose pd on p.patient_id=pd.Patient_id
+join doctors d on d.doctor_id=pd.Doctor_id
+where d.doctor_id=10000
+
+select p.* from patients p
+join Bill b on p.patient_id=b.patient_id
+where b.Bill_No=2
+
+select d.* from doctors d
+join Patient_diagnose pd on d.doctor_id=pd.Doctor_id
+join patients p on p.Patient_id=pd.patient_id
+join Calls c on c.patient_id=p.patient_id
+where c.phone_number='8701232323'
+
+select (b.receipt+d.price+di.price) as Total_price from bill b
+join doctors d on d.doctor_id=b.doctor_id
+join patients p on p.patient_id=b.patient_id
+join Patient_diagnose pd on  pd.Patient_id=p.patient_id
+join diagnose di on di.diagnose_name=pd.Diagnose
